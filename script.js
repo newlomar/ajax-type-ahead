@@ -2,8 +2,14 @@ const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb
 
 const array = []
 
-fetch(endpoint).then((item) => {
-  console.log(item.json())
-})
+const getData = async () => {
+  await fetch(endpoint).then(res => res.json()).then((data) => {
+    data.forEach((item) => {
+      array.push(item)
+    })
+  })
+}
+
+getData()
 
 // Ideia do filtro, usar algo do tipo "inclusdes" para o array
