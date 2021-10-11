@@ -23,7 +23,7 @@ const handleChange = (event) => {
     })
 
     const lisArray = filteredItems.map((item) => {
-      return `<li><span>${item.city}, ${item.state}</span><span class="population">${Number(item.population)}</span></li>`
+      return `<li><span>${item.city}, ${item.state}</span><span class="population">${Number(item.population).toLocaleString()}</span></li>`
     })
 
     suggestions.innerHTML = lisArray.join('')
