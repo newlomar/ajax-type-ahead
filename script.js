@@ -10,5 +10,33 @@ fetch(endpoint)
   })
 })
 
+const handleChange = (event) => {
+  
+  if (event.target.value.trim() === '') {
+    suggestions.innerHTML = `<li>Filter for a city</li>
+    <li>or a state</li>`
+  }
+
+  else {
+    const filteredItems = arrayOfCities.filter((item) => {
+      return item.city.toLowerCase().includes(event.target.value.toLowerCase()) || item.state.toLowerCase().includes(event.target.value.toLowerCase())
+    })
+
+    const lisArray = filteredItems.map((item) => {
+      return `<li><span>${item.city}, ${item.state}</span><span class="population">${Number(item.population)}</span></li>`
+    })
+
+    suggestions.innerHTML = lisArray.join('')
+  }
+
+}
+
+const input = document.querySelector("[data-js='search']")
+const suggestions = document.querySelector("[data-js='suggestions']")
+
+input.addEventListener('change', handleChange)
+input.addEventListener('keyup', handleChange)
+
+
 
 // Ideia do filtro, usar algo do tipo "inclusdes" para o array
