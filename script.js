@@ -29,9 +29,15 @@ const handleChange = (event) => {
              item.state.toLowerCase().includes(event.target.value.toLowerCase())
     })
 
+    const regex = new RegExp(event.target.value, 'gi')
+
     const lisArray = filteredItems.map((item) => {
+
+      const cityName = item.city.replace(regex, `<span class="hl">${event.target.value}</span>`)
+      const stateName = item.state.replace(regex, `<span class="hl">${event.target.value}</span>`)
+
       return `<li>
-                <span>${item.city},${item.state}</span>
+                <span class="name">${cityName}, ${stateName}</span>
                 <span class="population">${Number(item.population).toLocaleString()}</span>
               </li>`
     })
